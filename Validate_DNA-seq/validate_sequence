@@ -1,0 +1,41 @@
+def validate_dna(dna_seq):
+    dna_upper = dna_seq.upper()
+    valid = len(dna_upper)
+    validagain = dna_upper.count("T") + dna_upper.count("A") + dna_upper.count("C") + dna_upper.count("G")
+    if valid == validagain:
+        print("THIS IS A VALID SEQUENCE")
+        return True
+    else:
+        print("THIS SEQUENCE IS INVALID")
+        return False
+validate_dna("ttttgtcgatagcgatttacgcctatgtgaacgaattacaactggctccgtattcgctcccttactactggaccccttatcattacagacgcacgtgttcccgacaaaacttcaaacccgcgggttagcactagggcgttagaattttttagatccgtagaagacattcagtgtcgttctccgtgaccctagctgctgtgacgatcggtatttaatacgtataaccgtgttacatgatatagggccggataggggaatgaacgtacatagccataattgataatgatcaggatagggggcgccacctaaccttgggccagagagcggcgagtgataaaaccagtggacggtccttgtcagatggagtaaacgccggggtgagatatcagacctaaggcgtatccgaatcaatttttttgagccttgcgctcgtggacaaataaactggccgtgctacgcctcgccgcgaccatgtcgcatgaacagcgactttggaggcatgaaacagactagtggcatgataacgctgcgcctcggaatccgctctggatattgaggttttgagggtgtcgccacattgacctcgcgattactgcaatcgccgcaaactatgatggaggcgatgtcctcgtgatttgcccatctacacgtacaccactaagctacgcagacgaatatgctcttctcgtatcgtccagatggtcactcctgaggcttatgatgttaccgggtgggatgccggagctcgtacgagtcgcagtataatttcatagttaatcagatagtgctcgctacactatcatccagcgcctcacctccacgaccgagctctactccgttacagaatttgccccccatcggacaagagaggctggtctaatcctgctgtacggtacgacggcctcagtaaccgcatccggtgttgcctaagacctaccagaccgtcttgccttgcgtccgcggatcatgggactctgtgtgggcgtgttaaacgtcacga")
+    
+def reverse_complement(dna_seq):
+#""" Computes the reverse complement of the DNA sequence. """
+    assert validate_dna(dna_seq), "Invalid DNA sequence"
+    comp_dna = ""
+    for c in dna_seq.upper():
+        if c == "A":
+            comp_dna = "T" + comp_dna
+        elif c == "T":
+            comp_dna = "A" + comp_dna
+        elif c == "G":
+            comp_dna = "C" + comp_dna
+        elif c== "C":
+            comp_dna = "G" + comp_dna
+    return comp_dna
+reverse_complement("ttttgtcgatagcgatttacgcctatgtgaacgaattacaactggctccgtattcgctcccttactactggaccccttatcattacagacgcacgtgttcccgacaaaacttcaaacccgcgggttagcactagggcgttagaattttttagatccgtagaagacattcagtgtcgttctccgtgaccctagctgctgtgacgatcggtatttaatacgtataaccgtgttacatgatatagggccggataggggaatgaacgtacatagccataattgataatgatcaggatagggggcgccacctaaccttgggccagagagcggcgagtgataaaaccagtggacggtccttgtcagatggagtaaacgccggggtgagatatcagacctaaggcgtatccgaatcaatttttttgagccttgcgctcgtggacaaataaactggccgtgctacgcctcgccgcgaccatgtcgcatgaacagcgactttggaggcatgaaacagactagtggcatgataacgctgcgcctcggaatccgctctggatattgaggttttgagggtgtcgccacattgacctcgcgattactgcaatcgccgcaaactatgatggaggcgatgtcctcgtgatttgcccatctacacgtacaccactaagctacgcagacgaatatgctcttctcgtatcgtccagatggtcactcctgaggcttatgatgttaccgggtgggatgccggagctcgtacgagtcgcagtataatttcatagttaatcagatagtgctcgctacactatcatccagcgcctcacctccacgaccgagctctactccgttacagaatttgccccccatcggacaagagaggctggtctaatcctgctgtacggtacgacggcctcagtaaccgcatccggtgttgcctaagacctaccagaccgtcttgccttgcgtccgcggatcatgggactctgtgtgggcgtgttaaacgtcacga")
+
+
+
+def frequency(dna_seq):
+    dic = {}
+    for x in dna_seq.upper():
+         if x in dic: 
+             dic[x] += 1
+         else: 
+             dic[x] = 1
+    return dic
+
+frequency("tagatttaagacttgtgaagagctcacgcaaggtcaatctatctacagacgcttctcgtcccacctccacttcacggtggcaccgggagacagaacacgctaccgtttgctctcaagtcaaatgccctatagcctaagacgcaccccatagcaataggaactatataacaaccaatggcctcctggacgctaaacgttaaggctttcgcccatgcaggggaaattccgtccccggcgctctgagacgtgaagttgggcggtctaataagcgcctctccggttcgaacggttcatcctaacccacccgtaaggtttatgaccgttctgaatcgacccaaccggattacaggattgctcaagatcctattggatctgtaatggcatcatggtcggagaagggaacggccttggtcggatccagcgtagtgtgtcaaacgttacctgccgtgtactatttctctagacaccgggccccgaatatctcttagcaccttccctaggtaggtgctcccaggattaccggacgagctacacggttcacaggtaaactaacgctggacttactggtccaataccaagatcagacgcctgcctgtaatattggagtagtggatggaagacccgtgacctatctaagtcacaccattttatgtctgatcagctactggatacactgaggcgatggcggcagcgtatacgtagtaaaaccggagatagtctgactctcgcgcaggaaaccgtaaacgtgtcgcgtgcccaggtcggaaatcactaccgttcgtcaggaagccatttctagcagcccatatcccctattgtcagatagagtaggcgcgtcaggtgtccttcctgtttcctagccaactaatgcacgatacatgcgaaagaactgcaaagtgttcgctgataatgttttgtcccgtgactatttcaccattVcgctgacgcgcgttctaaggttcttgcattcgtaaacgatcctcaccaccatatattcatt")
+
